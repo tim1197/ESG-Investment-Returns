@@ -14,5 +14,5 @@ kernel:
 
 database:
 	docker pull postgres && \
-	docker run --name some-postgres -e POSTGRES_PASSWORD=$(POSTGRES_PASSWORD) -p 5432:5432 -d postgres
+	docker run --name esg-investment-returns-db -e POSTGRES_PASSWORD=your_password -d postgres
 

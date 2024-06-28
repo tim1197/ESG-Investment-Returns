@@ -2,8 +2,8 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 
-DB_PASSWORD = "test"
-DB_PATH = f"postgresql://postgres:{DB_PASSWORD}@localhost:5432/esg"
+DB_PASSWORD = "//medtxgmd:Kcwbc-xiVmqwlvlhMvbz8zpWMDRPhQo6"
+DB_PATH = f"postgresql:{DB_PASSWORD}@localhost:5432/esg"
 DEFAULT_TABLE = "scores"
 
 class DatabaseConnector:
