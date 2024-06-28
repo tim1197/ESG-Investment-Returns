@@ -39,7 +39,11 @@ class DAX50ESGIndexReplication:
         # Drop excluded companies
         data_dax50 = data_dax50[~data_dax50["isin"].isin(excluded_companies)]
         # Get returns for the isins
-        data_dax50["return"] = data_dax50.groupby('isin')['price'].apply(lambda x: (x / x.shift(1)) - 1).reset_index(level=0, drop=True)
+        data_dax50["return"] = (
+            data_dax50.groupby("isin")["price"]
+            .apply(lambda x: (x / x.shift(1)) - 1)
+            .reset_index(level=0, drop=True)
+        )
         data_dax50 = data_dax50.set_index(["isin", "date"]).rename(
             columns={
                 "market capitalization in milion": "mktcap",

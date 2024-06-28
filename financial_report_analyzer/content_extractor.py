@@ -45,7 +45,7 @@ class TextExtractor:
     def create_hash(self, texts: list):
         raw_text = "".join(texts)
         return hashlib.sha256(raw_text.encode()).hexdigest()
-    
+
     def get_sentences(self, url_type="htm"):
         if url_type == "pdf":
             self.store_pdf_cache()
@@ -56,12 +56,12 @@ class TextExtractor:
         text = soup.get_text()
         sentences = self.extract_sentences(text)
         return [self.clean(sentence) for sentence in sentences if sentence.strip()]
-    
+
     def get_scentences_dax(self):
         reader = PdfReader(self.report)
         texts = []
         for page in reader.pages:
             texts.append(page.extract_text())
-        text = "".join(texts)   
+        text = "".join(texts)
         sentences = self.extract_sentences(text)
         return [self.clean(sentence) for sentence in sentences if sentence.strip()]

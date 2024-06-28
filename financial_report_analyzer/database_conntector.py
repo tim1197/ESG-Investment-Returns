@@ -2,12 +2,15 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 
-DB_PASSWORD = "//medtxgmd:Kcwbc-xiVmqwlvlhMvbz8zpWMDRPhQo6"
+DB_PASSWORD = "your_password"
 DB_PATH = f"postgresql:{DB_PASSWORD}@localhost:5432/esg"
 DEFAULT_TABLE = "scores"
 
+
 class DatabaseConnector:
-    def __init__(self, db_path=DB_PATH, db_password=DB_PASSWORD, default_table=DEFAULT_TABLE):
+    def __init__(
+        self, db_path=DB_PATH, db_password=DB_PASSWORD, default_table=DEFAULT_TABLE
+    ):
         self.engine = create_engine(db_path)
         self.table_names = (
             pd.read_sql(

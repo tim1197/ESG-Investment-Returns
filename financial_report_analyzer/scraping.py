@@ -39,7 +39,9 @@ class SECScraper:
             "Upgrade-Insecure-Requests": "1",
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
         }
-        return requests.request("GET", base_url, data=payload, headers=headers, params=querystring)
+        return requests.request(
+            "GET", base_url, data=payload, headers=headers, params=querystring
+        )
 
     def request_filings(self, filings_url):
         payload = ""
@@ -96,7 +98,9 @@ class SECScraper:
                 if doc_link.text.startswith(self.ticker):
                     doc_href = doc_link["href"]
                     download_url = f"https://www.sec.gov{doc_href}"
-                    filings[year] = "".join(download_url.split(".xml")).replace("_htm", ".htm")
+                    filings[year] = "".join(download_url.split(".xml")).replace(
+                        "_htm", ".htm"
+                    )
         return filings
 
     def get_doc_href(self, archive_soup):
@@ -123,7 +127,9 @@ class SECScraper:
             doc_href = self.get_doc_href(archive_soup)
             download_url = f"https://www.sec.gov{doc_href}"
             filings[year] = (
-                "".join(download_url.split(".xml")).replace("_htm", ".htm").replace("ix?doc=/", "")
+                "".join(download_url.split(".xml"))
+                .replace("_htm", ".htm")
+                .replace("ix?doc=/", "")
             )
         return filings
 

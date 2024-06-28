@@ -10,12 +10,17 @@ MODEL_TYPES = {
     "governance": "ESGBERT/GovernanceBERT-governance",
 }
 
+
 class ScoringModel:
     def __init__(self):
         env_pipe = self.load_pipe("environmental")
         soc_pipe = self.load_pipe("social")
         gov_pipe = self.load_pipe("governance")
-        self.pipes = {"environmental": env_pipe, "social": soc_pipe, "governance": gov_pipe}
+        self.pipes = {
+            "environmental": env_pipe,
+            "social": soc_pipe,
+            "governance": gov_pipe,
+        }
 
     def load_pipe(self, type):
         name = MODEL_TYPES[type]
